@@ -1,9 +1,13 @@
-import React, { useState } from "react";
-import { Navigate, useNavigate } from "react-router-dom";
+// import security from "../assets/undraw_exams_re_4ios.svg";
 import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
-import toast from "react-hot-toast";
+import { useNavigate } from "react-router-dom";
+// import OAuth from "../components/OAuth";
+import { useState } from "react";
+import { toast } from "react-hot-toast";
+import Loader from "../components/Loader";
 
 const SignIn = () => {
+  const navigate = useNavigate();
   const [loading, setLoading] = useState(false);
   const [formData, setFormData] = useState({
     email: "",
@@ -11,7 +15,12 @@ const SignIn = () => {
   });
   const { email, password } = formData;
 
-  const naviagate = useNavigate();
+  const onChangeHandler = (e) => {
+    setFormData({
+      ...formData,
+      [e.target.id]: e.target.value,
+    });
+  };
 
   const submitDetails = async (e) => {
     e.preventDefault();
@@ -25,7 +34,7 @@ const SignIn = () => {
         password
       );
       if (userCredentials?.user) {
-        naviagate("/");
+        navigate("/");
         toast.success("Welcome Back, have a great day");
       }
     } catch (error) {
@@ -36,15 +45,12 @@ const SignIn = () => {
     }
   };
 
-  const onChangeHandler = (e) => {
-    setFormData({
-      ...formData,
-      [e.target.id]: e.target.value,
-    });
-  };
+  if (loading) {
+    return <Loader />;
+  }
 
   return (
-    <div>
+    <div className="">
       <h1 className="my-12 mb-20 bg-gradient-to-r from-indigo-400 to-cyan-400 bg-clip-text text-center font-raleway text-5xl font-extrabold text-transparent">
         Sign-in in your account
       </h1>
@@ -63,6 +69,7 @@ const SignIn = () => {
             {/* <!-- Right column container --> */}
             <div className="mx-auto mb-12 mt-8 md:mb-0 md:w-8/12 lg:mt-0 lg:w-5/12 xl:w-5/12">
               <form onSubmit={submitDetails} type="submit">
+                {/* <!-- Email input --> */}
                 <div className="form__group field relative mx-auto w-full max-w-[90%] py-4">
                   <input
                     type="email"
@@ -77,6 +84,8 @@ const SignIn = () => {
                     Email address
                   </label>
                 </div>
+
+                {/* <!-- Password input --> */}
                 <div className="form__group field relative mx-auto w-full max-w-[90%]  py-4">
                   <input
                     type="password"
@@ -97,7 +106,7 @@ const SignIn = () => {
                   <p className="text- pt-3 text-gray-400">
                     Dont have an account?{" "}
                     <span
-                      onClick={() => Navigate("/sign-up")}
+                      onClick={() => navigate("/sign-up")}
                       className="cursor-pointer bg-gradient-to-r from-rose-400 to-red-500 bg-clip-text text-transparent"
                     >
                       Register
@@ -127,6 +136,8 @@ const SignIn = () => {
                   </p>
                 </div>
               </form>
+              {/* Google authentication */}
+              {/* <OAuth /> */}
             </div>
           </div>
         </div>
