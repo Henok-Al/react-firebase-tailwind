@@ -5,7 +5,6 @@ import { FcGoogle } from "react-icons/fc";
 import { useNavigate } from "react-router-dom";
 import { db } from "../firebase";
 
-
 const OAuth = () => {
   const navigate = useNavigate();
   const signInWithGoogle = async () => {
@@ -29,12 +28,12 @@ const OAuth = () => {
     }
   };
   return (
-    <div className='mx-auto  my-8 w-full max-w-[70%] '>
+    <div className="mx-auto  my-8 w-full max-w-[70%] ">
       <button
         onClick={signInWithGoogle}
-        className='google__btn__shadow flex w-full cursor-pointer items-center justify-center rounded-md bg-gradient-to-r from-rose-400 to-red-500 py-3 font-semibold text-white transition duration-200 ease-in-out active:scale-95'
+        className="google__btn__shadow flex w-full cursor-pointer items-center justify-center rounded-md bg-gradient-to-r from-rose-400 to-red-500 py-3 font-semibold text-white transition duration-200 ease-in-out active:scale-95"
       >
-        <FcGoogle size={22} className='mr-2 rounded-full bg-white' />
+        <FcGoogle size={22} className="mr-2 rounded-full bg-white" />
         Sign in with google
       </button>
     </div>
