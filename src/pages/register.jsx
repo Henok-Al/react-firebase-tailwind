@@ -18,6 +18,7 @@ import { FcAddImage } from "react-icons/fc";
 // import useAuthStatus from "../hooks/useAuthStatus";
 import { db } from "../firebase";
 import Loader from "../components/Loader";
+import OAuth from "../components/OAuth";
 
 const Register = () => {
   const auth = getAuth();
@@ -250,7 +251,7 @@ const Register = () => {
 
                 {/* Google authentication */}
               </form>
-              {/* <OAuth /> */}
+              <OAuth />
             </div>
           </div>
         </div>

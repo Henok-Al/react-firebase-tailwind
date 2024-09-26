@@ -1,10 +1,10 @@
 // import security from "../assets/undraw_exams_re_4ios.svg";
 import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
 import { useNavigate } from "react-router-dom";
-// import OAuth from "../components/OAuth";
 import { useState } from "react";
 import { toast } from "react-hot-toast";
 import Loader from "../components/Loader";
+import OAuth from "../components/OAuth";
 
 const SignIn = () => {
   const navigate = useNavigate();
@@ -137,7 +137,7 @@ const SignIn = () => {
                 </div>
               </form>
               {/* Google authentication */}
-              {/* <OAuth /> */}
+              <OAuth />
             </div>
           </div>
         </div>
