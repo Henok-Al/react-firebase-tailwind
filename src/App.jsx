@@ -5,6 +5,8 @@ import SignIn from "./pages/SignIn";
 import { Toaster } from "react-hot-toast";
 import Register from "./pages/register";
 import ForgotPassword from "./pages/ForgotPassword";
+import WriteBlog from "./pages/WriteBlog";
+import PrivateRoute from "./components/PrivateRoute";
 
 const App = () => {
   return (
@@ -13,6 +15,9 @@ const App = () => {
         <Header />
         <Routes>
           <Route path="/" element={<Home />} />
+          <Route element={<PrivateRoute />}>
+            <Route path="/write" element={<WriteBlog />} />
+          </Route>
           <Route path="/sign-in" element={<SignIn />} />
           <Route path="/sign-up" element={<Register />} />
           <Route path="/forgot-password" element={<ForgotPassword />} />
